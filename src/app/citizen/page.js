@@ -1,6 +1,7 @@
 "use client"
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+// import { log } from 'console';
 
 export default function HeroSection() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -27,9 +28,10 @@ export default function HeroSection() {
       photo: null, // Store file object
     });
     const [message, setMessage] = useState("");
-    const router = useRouter();
+    const router = useRouter(); 
   
     const handleFileChange = (e) => {
+      e.preventDefault();
       const file = e.target.files[0];
       if (file) {
         setForm({ ...form, photo: file });
@@ -38,15 +40,15 @@ export default function HeroSection() {
   
     const handleSubmit = async (e) => {
       e.preventDefault();
-      const citizenId = localStorage.getItem("user_id");
-      if (!citizenId) {
-        setMessage("Please log in first.");
-        router.push("/login");
-        return;
-      }
+      // const citizenId = localStorage.getItem("user_id");
+      // if (!citizenId) {
+      //   setMessage("Please log in first.");
+      //   router.push("/login");
+      //   return;
+      // }
   
       const formData = new FormData();
-      formData.append("citizen_id", citizenId);
+      // formData.append("citizen_id", citizenId);
       formData.append("location", form.location);
       formData.append("description", form.description);
       formData.append("animal_type", form.animalType);
@@ -57,7 +59,10 @@ export default function HeroSection() {
       }
   
       try {
-        const res = await fetch("http://localhost:5000/report", {
+        // console.log(`${process.env.NEXT_PUBLIC_API_URL}/report`);
+        alert(`${process.env.NEXT_PUBLIC_API_URL}/report`);
+        
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/report`, {
           method: "POST",
           body: formData, // No need for Content-Type header with FormData
         });
@@ -138,7 +143,7 @@ export default function HeroSection() {
                   id="location" 
                   placeholder="Enter street address or landmark" 
                   className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  required
+                  
                 />
               </div>
               
@@ -149,7 +154,7 @@ export default function HeroSection() {
                   className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   value={form.animalType}
                   onChange={(e) => setForm({ ...form, animalType: e.target.value })}
-                  required
+                  // required
                 >
                   <option value="">Select animal type</option>
                   <option value="dog">Dog</option>
@@ -167,7 +172,7 @@ export default function HeroSection() {
                   value={form.condition}
                   onChange={(e) => setForm({ ...form, condition: e.target.value })}
                   className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  required
+                  // required
                 >
                   <option value="">Select Condition</option>
                   <option value="healthy">Healthy</option>
@@ -238,7 +243,8 @@ export default function HeroSection() {
                   Cancel
                 </button>
                 <button 
-                  type="submit" 
+                  type="submit"
+                  onClick={handleSubmit}
                   className="bg-teal-700 hover:bg-teal-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                 >
                   Submit Report
