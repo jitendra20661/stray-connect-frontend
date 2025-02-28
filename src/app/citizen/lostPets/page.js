@@ -1,10 +1,12 @@
 'use client'
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-export default function LostAndFound() {
+export default function LostPets() {
   const [isOpen, setIsOpen] = useState(false);
   const [petList, setPetList] = useState([]);
   const [formData, setFormData] = useState({ name: "", description: "", contact: "", photo: "" });
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -28,6 +30,37 @@ export default function LostAndFound() {
     setFormData({ name: "", description: "", contact: "", photo: "" });
     setIsOpen(false);
   };
+
+
+
+
+  // Fetch lost pets from the API when the component mounts
+  useEffect(() => {
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/lost-pets`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Failed to fetch lost pets');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setPets(data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        setError(error.message);
+        setLoading(false);
+      });
+  }, []); // Empty dependency array means this runs once on mount
+  
+  if (loading) {
+    return <div className="text-center text-gray-600">Loading...</div>;
+  }
+
+  // Display error state
+  if (error) {
+    return <div className="text-center text-red-500">{error}</div>;
+  }
 
   return (
     <div className="container mx-auto p-6"> 
@@ -63,6 +96,60 @@ export default function LostAndFound() {
           </div>
         ))}
       </div>
+
+
+
+
+
+
+
+
+
+
+
+      <div className="container mx-auto p-4">
+      {pets.length > 0 ? (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {pets.map((pet) => (
+            <div
+              key={pet.id}
+              className="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300"
+            >
+              <img
+                src={pet.imageUrl}
+                alt={pet.name}
+                className="w-full h-48 object-cover"
+                onError={(e) => {
+                  e.target.src = '/default-pet.jpg'; // Fallback image
+                }}
+              />
+              <div className="p-4">
+                <h2 className="text-xl font-bold text-gray-800 mb-2">{pet.name}</h2>
+                <p className="text-gray-600 mb-1">
+                  <strong>Type:</strong> {pet.type}
+                </p>
+                <p className="text-gray-600 mb-1">
+                  <strong>Description:</strong> {pet.description}
+                </p>
+                <p className="text-gray-600 mb-1">
+                  <strong>Last Seen:</strong> {pet.lastSeen}
+                </p>
+                <p className="text-gray-600 mb-1">
+                  <strong>Date Lost:</strong> {pet.dateLost}
+                </p>
+                <p className="text-gray-600 mb-1">
+                  <strong>Contact:</strong> {pet.contact}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div className="text-center text-gray-600">No lost pets reported yet.</div>
+      )}
     </div>
+    </div>
+
+    
   );
 }

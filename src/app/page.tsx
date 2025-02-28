@@ -1,11 +1,11 @@
 
 import Image from "next/image";
 import Navbar from "@/app/components/Navbar"
-import Mainn from "@/app/components/Mainn"
-import Features from "@/app/components/Features"
+import Mainn from "@/app/components/mainn"
+import Features from "@/app/components/PetServices"
 
 
-export default function Home() {
+export default function Home(){
   return (
     <div>
       <div className="items-center justify-center h-48 mb-4 bg-gray-50 dark:bg-gray-700">
@@ -18,6 +18,9 @@ export default function Home() {
             </svg>
          </p>
       </div>
+
+
+      
     </div>
   );
 }
