@@ -1,49 +1,32 @@
-import React from 'react'
+import React from 'react';
 
 function Navbar() {
   return (
-        <div className="grid grid-cols-2 gap-4 bg-white shadow-md">
-            {/* <div className="flex items-center justify-center h-24 rounded-sm bg-gray-50 dark:bg-gray-800"> */}
-            <div className="flex items-center justify-center h-24">
-              <p className="text-2xl text-gray-400 dark:text-gray-500">
-                <svg
-                  className="w-3.5 h-3.5"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 18 18"
-                >
-                  <path
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeWidth="2"
-                    d="M9 1v16M1 9h16"
-                  />
-                </svg>
-              </p>
-            </div>
-            <div className="flex items-center justify-center h-24">
-              <p className="text-2xl text-gray-400 dark:text-gray-500">
-                <svg
-                  className="w-3.5 h-3.5"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 18 18"
-                >
-                  <path
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeWidth="2"
-                    d="M9 1v16M1 9h16"
-                  />
-                </svg>
-              </p>
-            </div>
-            
-          </div>
+    <nav className="bg-teal-800 text-white px-6 py-4 flex justify-between items-center">
+      {/* Left Side - Logo */}
+      <div className="flex items-center space-x-3">
+        <div className="bg-white p-2 rounded-full">
+          <img src="https://img.icons8.com/ios-filled/50/000000/paw-print.png" alt="logo" className="w-8 h-8"/>
+        </div>
+        <span className="text-xl font-bold">Stray Connect</span>
+      </div>
 
-  )
+      {/* Center - Navigation Links */}
+      <ul className="hidden md:flex space-x-6">
+        <li><a href="#" className="hover:text-gray-300">HOME</a></li>
+        <li><a href="#" className="hover:text-gray-300">CITIZENS</a></li>
+        <li><a href="#" className="hover:text-gray-300">ORGANIZATION</a></li>
+        <li><a href="#" className="hover:text-gray-300">BLOGS</a></li>
+        <li><a href="#" className="hover:text-gray-300">CONTACT</a></li>
+      </ul>
+
+      {/* Right Side - Sign In & Register Buttons */}
+      <div className="space-x-3">
+        <button className="bg-gray-200 text-gray-800 px-4 py-2 rounded-md hover:bg-gray-300">Sign in</button>
+        <button className="bg-teal-600 px-4 py-2 rounded-md hover:bg-teal-700">Register</button>
+      </div>
+    </nav>
+  );
 }
 
-export default Navbar
+export default Navbar;
