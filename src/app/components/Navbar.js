@@ -2,7 +2,7 @@ import React from 'react';
 
 function Navbar() {
   return (
-    <nav className="bg-teal-800 text-white px-6 py-4 flex justify-between items-center">
+    <nav className="fixed top-0 left-0 w-full bg-stone-700/90 backdrop-blur-sm p-4 text-white px-6 flex justify-between items-center shadow-md z-50">
       {/* Left Side - Logo */}
       <div className="flex items-center space-x-3">
         <div className="bg-white p-2 rounded-full">
@@ -19,9 +19,6 @@ function Navbar() {
         <li><a href="#" className="hover:text-gray-300">BLOGS</a></li>
         <li><a href="#" className="hover:text-gray-300">CONTACT</a></li>
       </ul>
-
-      {/* Right Side - Sign In & Register Buttons */}
-
     </nav>
   );
 }
