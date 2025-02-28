@@ -29,7 +29,7 @@ export default function HeroSection() {
     const [message, setMessage] = useState("");
     const router = useRouter();
   
-    const handleFileChange = (e) => {
+    const handlePhotoSelect = (e) => {
       const file = e.target.files[0];
       if (file) {
         setForm({ ...form, photo: file });
@@ -38,15 +38,15 @@ export default function HeroSection() {
   
     const handleSubmit = async (e) => {
       e.preventDefault();
-      const citizenId = localStorage.getItem("user_id");
-      if (!citizenId) {
-        setMessage("Please log in first.");
-        router.push("/login");
-        return;
-      }
+      // const citizenId = localStorage.getItem("user_id");
+      // if (!citizenId) {
+      //   setMessage("Please log in first.");
+      //   router.push("/login");
+      //   return;
+      // }
   
       const formData = new FormData();
-      formData.append("citizen_id", citizenId);
+      // formData.append("citizen_id", citizenId);
       formData.append("location", form.location);
       formData.append("description", form.description);
       formData.append("animal_type", form.animalType);
@@ -138,7 +138,7 @@ export default function HeroSection() {
                   id="location" 
                   placeholder="Enter street address or landmark" 
                   className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  required
+                  // required
                 />
               </div>
               
@@ -149,7 +149,7 @@ export default function HeroSection() {
                   className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   value={form.animalType}
                   onChange={(e) => setForm({ ...form, animalType: e.target.value })}
-                  required
+                  // required
                 >
                   <option value="">Select animal type</option>
                   <option value="dog">Dog</option>
@@ -167,7 +167,7 @@ export default function HeroSection() {
                   value={form.condition}
                   onChange={(e) => setForm({ ...form, condition: e.target.value })}
                   className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  required
+                  // required
                 >
                   <option value="">Select Condition</option>
                   <option value="healthy">Healthy</option>
@@ -208,7 +208,7 @@ export default function HeroSection() {
             <input
               type="file"
               accept="image/*"
-              onChange={handleFileChange}
+              onChange={handlePhotoSelect}
               className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
             {form.photo && (

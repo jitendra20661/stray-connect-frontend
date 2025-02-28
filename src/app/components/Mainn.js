@@ -1,6 +1,6 @@
 import React from 'react';
 
-function HeroSection() {
+function Mainn() {
   return (
     <div className="relative w-full h-[500px]">
       {/* Background Image */}
@@ -19,4 +19,4 @@ function HeroSection() {
   );
 }
 
-export default HeroSection;
+export default Mainn;
