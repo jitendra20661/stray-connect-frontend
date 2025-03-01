@@ -5,7 +5,7 @@ const services = [
   { image: "/adopt.jpg", title: "ADOPTION", path: "../adoption/" },
   { image: "/report.jpg", title: "REPORT STRAY" , path: "../citizen/"},
   { image: "/lost.jpg", title: "LOST & FOUND", path: "../citizen/lostPets/"},
-  { image: "/vacination.jpg", title: "VACCINATION CAMPAIGN", path:"../vaccination/" },
+  { image: "/vacination.jpg", title: "VACCINATION CAMPAIGN", path:"../citizen/vaccination/" },
 ];
 
 const PetServices = () => {
