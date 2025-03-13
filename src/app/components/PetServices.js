@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 
 const services = [
-  { image: "/adopt.jpg", title: "ADOPTION", path: "../adoption/" },
+  { image: "/adopt.jpg", title: "ADOPTION", path: "../citizen/adoption/" },
   { image: "/report.jpg", title: "REPORT STRAY" , path: "../citizen/"},
   { image: "/lost.jpg", title: "LOST & FOUND", path: "../citizen/lostPets/"},
   { image: "/vacination.jpg", title: "VACCINATION CAMPAIGN", path:"../citizen/vaccination/" },
